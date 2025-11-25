@@ -8,47 +8,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
     <style>
-        /* --- ESTILOS ESPECÍFICOS PARA ESTA PÁGINA (DELEGACIONES) --- */
-        
+        /* --- ESTILOS DELEGACIONES --- */
         body { background-color: #fcfcfc; color: #333; font-family: 'Segoe UI', sans-serif; }
-        
         .container-delegaciones { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-        
         .section-title { text-align: center; color: #8B1D35; font-size: 2.5rem; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
 
-        /* Banner de Horarios */
         .info-banner {
-            background-color: #fff;
-            border-left: 5px solid #BC955C; /* Dorado */
-            padding: 20px;
-            margin: 0 auto 50px auto;
-            max-width: 800px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border-radius: 4px;
+            background-color: #fff; border-left: 5px solid #BC955C; padding: 20px;
+            margin: 0 auto 50px auto; max-width: 800px; text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-radius: 4px;
         }
         .info-banner p { margin: 5px 0; font-size: 1.1rem; }
         .nota-leyenda { margin-top: 15px !important; font-size: 0.95rem !important; color: #666; font-style: italic; border-top: 1px solid #eee; padding-top: 10px; }
 
-        /* Fotos de Edificios (Completas y centradas) */
-        .delegation-photo { 
-            width: 100%; 
-            max-width: 900px; 
-            height: auto; 
-            display: block; 
-            margin: 0 auto 25px auto; 
-            border-radius: 4px; 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
-            border: 1px solid #eee; 
-        }
-
-        /* Bloques de Delegación */
+        .delegation-photo { width: 100%; max-width: 900px; height: auto; display: block; margin: 0 auto 25px auto; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border: 1px solid #eee; }
         .delegation-block { background: #fff; margin-bottom: 60px; border: 1px solid #e1e1e1; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .mencion-campeche { background-color: #fff; padding: 30px; text-align: center; border-left: 6px solid #8B1D35; margin-bottom: 50px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-radius: 4px; }
         
         .delegation-header { background-color: #8B1D35; color: white; padding: 15px 25px; }
         .delegation-header h3 { margin: 0; font-size: 1.4rem; font-weight: 600; text-transform: uppercase; }
-        
         .delegation-body { padding: 30px; }
         
         .delegation-info h4, .staff-section h4 { color: #8B1D35; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px; margin-bottom: 15px; font-size: 1.1rem; text-transform: uppercase; }
@@ -56,29 +34,24 @@
         .delegation-info li::before { content: "• "; color: #8B1D35; font-weight: bold; margin-right: 5px; }
         .contact-details { background: #f8f9fa; padding: 15px; border-radius: 6px; margin-top: 20px; font-size: 0.95rem; border-left: 3px solid #555; }
 
-        /* Personal y Grillas */
         .staff-section { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
         .staff-grid { display: flex; flex-wrap: wrap; gap: 25px; justify-content: flex-start; }
         .staff-grid.centered { justify-content: center; margin-bottom: 30px; }
 
-        /* Tarjetas Personal */
         .staff-card { background: #fff; border: 1px solid #eee; padding: 20px; border-radius: 8px; text-align: center; width: 200px; transition: transform 0.2s; }
         .staff-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .staff-card img { width: 140px; height: 140px; object-fit: cover; border-radius: 50%; border: 4px solid #f4f4f4; margin-bottom: 15px; }
         .staff-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 5px; text-transform: capitalize; color: #222; }
         .staff-role { font-size: 0.8rem; color: #777; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* TARJETA DELEGADO (DESTACADA) */
         .delegado-card { width: 100%; max-width: 350px; border: 2px solid #8B1D35; background-color: #fff; padding: 30px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
         .delegado-card img { width: 180px; height: 180px; border-color: #BC955C; }
         .delegado-card .staff-name { font-size: 1.2rem; margin-top: 10px; }
         .delegado-card .staff-role { font-size: 1rem; font-weight: bold; color: #8B1D35; }
 
-        /* Botón Teléfono */
         .phone-btn { display: inline-block; background-color: #8B1D35; color: #fff !important; padding: 8px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; margin-top: 15px; font-size: 1rem; transition: background 0.3s ease; box-shadow: 0 4px 6px rgba(139, 29, 53, 0.2); }
         .phone-btn:hover { background-color: #6a1628; transform: translateY(-2px); }
 
-        /* Responsivo */
         @media (max-width: 768px) { .staff-grid { justify-content: center; } .staff-card, .delegado-card { width: 100%; max-width: 280px; } }
     </style>
 </head>
@@ -94,12 +67,11 @@
     </nav>
 
     <main class="container-delegaciones">
-        
         <h2 class="section-title">Nuestras Delegaciones</h2>
 
         <div class="info-banner">
             <p><strong>📅 Días de Atención:</strong> Lunes a Viernes</p>
-            <p><strong>🕒 Horario:</strong> 8:00 am a 15:30 p.m.</p>
+            <p><strong>🕒 Horario:</strong> 8:00 am a 15:30 pm</p>
             <p class="nota-leyenda">"Todos los servicios y asesorías de este Instituto son totalmente gratuitos"</p>
         </div>
 
@@ -138,21 +110,21 @@
                     <h4 style="margin-top: 30px;">Equipo de Abogados</h4>
                     <div class="staff-grid">
                         <div class="staff-card"><img src="img/delegados/alamilla llergo ricardo luciano.jpg"><div class="staff-name">Ricardo Luciano Alamilla Llergo</div></div>
-                        <div class="staff-card"><img src="img/delegados/alan orlando pérez benítez.jpg"><div class="staff-name">Alan Orlando Pérez Benítez</div></div>
-                        <div class="staff-card"><img src="img/delegados/blanca yuli sánchez gómez.jpg"><div class="staff-name">Blanca Yuli Sánchez Gómez</div></div>
+                        <div class="staff-card"><img src="img/delegados/alan orlando perez benitez.jpg"><div class="staff-name">Alan Orlando Pérez Benítez</div></div>
+                        <div class="staff-card"><img src="img/delegados/blanca yuli sanchez gomez.jpg"><div class="staff-name">Blanca Yuli Sánchez Gómez</div></div>
                         <div class="staff-card"><img src="img/delegados/cabrera cruz josefa del jesus.jpg"><div class="staff-name">Josefa del Jesús Cabrera Cruz</div></div>
                         <div class="staff-card"><img src="img/delegados/cante garcia isaias.jpg"><div class="staff-name">Isaías Cante García</div></div>
-                        <div class="staff-card"><img src="img/delegados/carolina maría ávila méndez.jpg"><div class="staff-name">Carolina María Ávila Méndez</div></div>
-                        <div class="staff-card"><img src="img/delegados/daniela rejón polkey.jpg"><div class="staff-name">Daniela Rejón Polkey</div></div>
+                        <div class="staff-card"><img src="img/delegados/carolina maria avila mendez.jpg"><div class="staff-name">Carolina María Ávila Méndez</div></div>
+                        <div class="staff-card"><img src="img/delegados/daniela rejon polkey.jpg"><div class="staff-name">Daniela Rejón Polkey</div></div>
                         <div class="staff-card"><img src="img/delegados/delgado chan alicia.jpg"><div class="staff-name">Alicia Delgado Chan</div></div>
-                        <div class="staff-card"><img src="img/delegados/genoveva denis catalina méndez hernández.jpg"><div class="staff-name">Genoveva D. C. Méndez Hernández</div></div>
+                        <div class="staff-card"><img src="img/delegados/genoveva denis catalina mendez hernandez.jpg"><div class="staff-name">Genoveva D. C. Méndez Hernández</div></div>
                         <div class="staff-card"><img src="img/delegados/hernandez de la cruz juan manuel.jpg"><div class="staff-name">Juan Manuel Hernández de la Cruz</div></div>
                         <div class="staff-card"><img src="img/delegados/may zavala vidal.jpg"><div class="staff-name">Vidal May Zavala</div></div>
-                        <div class="staff-card"><img src="img/delegados/karen itchel quintero guzmán.jpg"><div class="staff-name">Karen Itchel Quintero Guzmán</div></div>
+                        <div class="staff-card"><img src="img/delegados/karen itchel quintero guzman.jpg"><div class="staff-name">Karen Itchel Quintero Guzmán</div></div>
                         <div class="staff-card"><img src="img/delegados/palestino lopez omar francisco.jpg"><div class="staff-name">Omar Francisco Palestino López</div></div>
                         <div class="staff-card"><img src="img/delegados/pavon ordaz irma.jpg"><div class="staff-name">Irma Pavón Ordaz</div></div>
                         <div class="staff-card"><img src="img/delegados/perez hernandez juana isabel.jpg"><div class="staff-name">Juana Isabel Pérez Hernández</div></div>
-                        <div class="staff-card"><img src="img/delegados/sarahí carrillo ávila.jpg"><div class="staff-name">Sarahí Carrillo Ávila</div></div>
+                        <div class="staff-card"><img src="img/delegados/sarahi carrillo avila.jpg"><div class="staff-name">Sarahí Carrillo Ávila</div></div>
                         <div class="staff-card"><img src="img/delegados/sergio dolores can cruz.jpg"><div class="staff-name">Sergio Dolores Can Cruz</div></div>
                         <div class="staff-card"><img src="img/delegados/silva quijano fernando daniel.jpg"><div class="staff-name">Fernando Daniel Silva Quijano</div></div>
                     </div>
@@ -185,9 +157,9 @@
                     <h4 style="margin-top:20px">Personal</h4>
                     <div class="staff-grid">
                         <div class="staff-card">
-                            <img src="img/delegados/gonzales cu cristian jesús.jpg" alt="Cristian Gonzales">
+                            <img src="img/delegados/gonzales cu cristian jesus.jpg" alt="Cristian Gonzales">
                             <div class="staff-name">Cristian Jesús Gonzales Cu</div>
-                            <div class="staff-role">Abogado</div>
+                            <div class="staff-role">Personal</div>
                         </div>
                     </div>
                 </div>
@@ -262,7 +234,7 @@
                 <div class="staff-section">
                     <div class="staff-grid centered">
                         <div class="staff-card delegado-card">
-                            <img src="img/delegados/cuy cuy josé bernardo.jpg" alt="José Cuy">
+                            <img src="img/delegados/cuy cuy jose bernardo.jpg" alt="José Cuy">
                             <div class="staff-name">Lic. José Bernardo Cuy Cuy</div>
                             <div class="staff-role">Delegado</div>
                             <a href="tel:9812082979" class="phone-btn"><i class="fas fa-phone"></i> 981 208 2979</a>
