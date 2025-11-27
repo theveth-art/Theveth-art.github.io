@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprobante de Cita - INDAJUCAM</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #eee; display: flex; justify-content: center; padding: 40px; }
+        .ticket-container {
+            background: #fff; width: 100%; max-width: 600px; padding: 40px;
+            border: 1px solid #ddd; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .header { text-align: center; border-bottom: 2px solid #8B1D35; padding-bottom: 20px; margin-bottom: 20px; }
+        .header h1 { color: #8B1D35; margin: 0; font-size: 24px; }
+        .header h2 { color: #BC955C; margin: 5px 0 0; font-size: 18px; }
+        
+        .info-group { margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 10px; }
+        .info-label { font-weight: bold; color: #555; display: block; margin-bottom: 5px; }
+        .info-value { font-size: 18px; color: #000; }
+
+        .folio-box { 
+            text-align: center; background: #f4f4f4; padding: 10px; 
+            margin: 20px 0; font-size: 20px; font-weight: bold; border: 1px solid #8B1D35; color: #8B1D35;
+        }
+
+        .footer-note { text-align: center; font-size: 12px; color: #777; margin-top: 40px; }
+        
+        .btn-print {
+            display: block; width: 100%; padding: 15px; background: #333; color: white; 
+            text-align: center; text-decoration: none; font-weight: bold; margin-top: 20px; cursor: pointer; border: none;
+        }
+        .btn-print:hover { background: #000; }
+
+        @media print {
+            body { background: #fff; padding: 0; }
+            .ticket-container { box-shadow: none; border: none; width: 100%; }
+            .btn-print { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ticket-container">
+        <div class="header">
+            <h1>INDAJUCAM</h1>
+            <h2>Asesoría Legal Gratuita</h2>
+            <p>Comprobante de Cita Electrónica</p>
+        </div>
+
+        <div class="folio-box">FOLIO: <span id="t-folio">-----</span></div>
+
+        <div class="info-group">
+            <span class="info-label">Nombre del Solicitante:</span>
+            <span class="info-value" id="t-nombre">...</span>
+        </div>
+
+        <div class="info-group">
+            <span class="info-label">Tipo de Visita:</span>
+            <span class="info-value" id="t-tipo">...</span>
+        </div>
+
+        <div class="info-group">
+            <span class="info-label">Detalle (Materia/Abogado):</span>
+            <span class="info-value" id="t-detalle">...</span>
+        </div>
+
+        <div class="info-group" style="display: flex; justify-content: space-between;">
+            <div>
+                <span class="info-label">Fecha:</span>
+                <span class="info-value" id="t-fecha">...</span>
+            </div>
+            <div>
+                <span class="info-label">Hora:</span>
+                <span class="info-value" id="t-hora">...</span>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            <p>* Favor de llegar 10 minutos antes de su cita.</p>
+            <p>* Si es primera vez, no olvide su INE y comprobante de domicilio.</p>
+            <p>Dirección: Calle Niebla #2, Fracciorama 2000, Campeche.</p>
+        </div>
+
+        <button onclick="window.print()" class="btn-print">IMPRIMIR COMPROBANTE</button>
+        <a href="index.html" style="display:block; text-align:center; margin-top:15px; color:#8B1D35;">Volver al Inicio</a>
+    </div>
+
+    <script>
+        // Recuperar datos guardados
+        const datos = JSON.parse(localStorage.getItem('citaINDAJUCAM'));
+
+        if (datos) {
+            document.getElementById('t-folio').innerText = "#" + datos.folio;
+            document.getElementById('t-nombre').innerText = datos.nombre;
+            document.getElementById('t-tipo').innerText = datos.tipo === 'primeraVez' ? "Primera Vez" : "Subsecuente";
+            document.getElementById('t-detalle').innerText = datos.detalle;
+            document.getElementById('t-fecha').innerText = datos.fecha;
+            document.getElementById('t-hora').innerText = datos.hora;
+        } else {
+            document.querySelector('.ticket-container').innerHTML = "<h2 style='text-align:center'>No hay cita registrada.</h2><a href='citas.html'>Volver</a>";
+        }
+    </script>
+
+</body>
+</html>

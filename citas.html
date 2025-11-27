@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citas Electrónicas - INDAJUCAM</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* ESTILOS ESPECÍFICOS CITAS */
+        body { background-color: #fcfcfc; font-family: 'Segoe UI', sans-serif; color: #333; }
+        .container-citas { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        .section-title { text-align: center; color: #8B1D35; font-size: 2.5rem; margin-bottom: 30px; text-transform: uppercase; font-weight: 800; }
+
+        /* Pasos */
+        .step-container { background: #fff; border: 1px solid #e1e1e1; border-radius: 8px; padding: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 30px; }
+        .step-title { color: #BC955C; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 20px; font-size: 1.2rem; text-transform: uppercase; }
+
+        /* Selección de Tipo */
+        .type-selector { display: flex; gap: 20px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .type-option { 
+            border: 2px solid #ddd; padding: 20px; border-radius: 8px; cursor: pointer; 
+            width: 200px; text-align: center; transition: all 0.3s; 
+        }
+        .type-option:hover { border-color: #8B1D35; transform: translateY(-2px); }
+        .type-option.active { border-color: #8B1D35; background-color: #fff5f5; }
+        .type-option i { font-size: 2rem; color: #8B1D35; margin-bottom: 10px; display: block; }
+
+        /* Avisos y Formularios */
+        .requirements-alert {
+            display: none; /* Oculto por defecto */
+            background-color: #fff8e1; border-left: 5px solid #ffc107; padding: 20px; 
+            margin-bottom: 30px; border-radius: 4px; font-size: 1rem;
+            animation: fadeIn 0.5s;
+        }
+        .requirements-alert ul { margin: 10px 0 0 20px; padding: 0; }
+
+        .subsecuente-form {
+            display: none; /* Oculto por defecto */
+            background-color: #f9f9f9; padding: 20px; border-radius: 8px; margin-bottom: 30px;
+            border: 1px solid #eee; animation: fadeIn 0.5s;
+        }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+        .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+
+        /* Contenedor del Calendario */
+        #calendar-section { display: none; animation: fadeIn 1s; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo-container">
+            <a href="index.html"><img src="img/LOGO.JPG" alt="Logo INDAJUCAM" class="logo-img"></a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">INICIO</a></li>
+        </ul>
+    </nav>
+
+    <main class="container-citas">
+        <h2 class="section-title">Agendar Cita</h2>
+
+        <div class="step-container">
+            <h3 class="step-title">1. Selecciona el tipo de visita</h3>
+            <div class="type-selector">
+                <div class="type-option" onclick="selectType('primeraVez', this)">
+                    <i class="fas fa-user-plus"></i>
+                    <strong>Primera Vez</strong>
+                </div>
+                <div class="type-option" onclick="selectType('subsecuente', this)">
+                    <i class="fas fa-user-check"></i>
+                    <strong>Subsecuente</strong>
+                </div>
+            </div>
+
+            <div id="requisitos-box" class="requirements-alert">
+                <strong><i class="fas fa-exclamation-circle"></i> IMPORTANTE: Documentación Requerida</strong>
+                <p>Para tu cita de primera vez es indispensable presentar original y copia de:</p>
+                <ul>
+                    <li>Identificación Oficial Vigente (INE, Pasaporte, etc.)</li>
+                    <li>Comprobante de Domicilio (No mayor a 3 meses)</li>
+                    <li>En caso de laborar: Último talón de pago</li>
+                </ul>
+            </div>
+
+            <div id="subsecuente-box" class="subsecuente-form">
+                <h4 style="color:#8B1D35; margin-top:0;">Datos del Expediente</h4>
+                <div class="form-group">
+                    <label>Materia:</label>
+                    <select id="materia-select" onchange="cargarAbogados()">
+                        <option value="">Selecciona una materia...</option>
+                        <option value="Civil">Civil</option>
+                        <option value="Familiar">Familiar</option>
+                        <option value="Mercantil">Mercantil</option>
+                        <option value="Administrativo">Administrativo</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Abogado Asignado:</label>
+                    <select id="abogado-select">
+                        <option value="">Primero selecciona la materia</option>
+                    </select>
+                </div>
+                <p style="font-size:0.9rem; color:#666;">* Selecciona tu abogado para continuar a la agenda.</p>
+            </div>
+        </div>
+
+        <div id="calendar-section" class="step-container">
+            <h3 class="step-title">2. Selecciona Fecha y Hora Disponible</h3>
+            <p style="margin-bottom: 20px; color: #666;">Selecciona un horario en el calendario a continuación. Te llegará la confirmación a tu correo electrónico.</p>
+            
+            <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0LmpYPh4FfWz4UT696gOSK82axu_h7ov2pXxFq1HUmNR0c10DIcrz0OeCox-SsKKG3DMSOInLY?gv=true" style="border: 0" width="100%" height="600" frameborder="0"></iframe>
+            </div>
+
+    </main>
+
+    <footer>
+        <div class="footer-content" style="text-align:center; padding:20px; color:white; background:#2c2c2c;">
+            <p>
+                <strong>Instituto de Acceso a la Justicia del Estado de Campeche (INDAJUCAM)</strong><br>
+                Calle Niebla #2, Col. Fracciorama 2000, Campeche.<br>
+                Tel: 981 145 6181
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // BASE DE DATOS DE ABOGADOS (Según la información de las delegaciones)
+        const abogadosDB = {
+            "Civil": [
+                "Mtro. Eric Uvence Martin Cicler Zavala",
+                "Lic. Ricardo Luciano Alamilla Llergo",
+                "Lic. Pedro Ivan Ake Diaz",
+                "Lic. Janet Isela Chiquil Dzul"
+            ],
+            "Familiar": [
+                "Lic. Eli Esmeralda Herrera Estrella",
+                "Lic. Luis Alfredo Saucedo Camara",
+                "Lic. José Bernardo Cuy Cuy",
+                "Lic. Blanca Yuli Sánchez Gómez",
+                "Lic. Josefa del Jesús Cabrera Cruz"
+            ],
+            "Mercantil": [
+                "Lic. José Leonardo Chan Chan",
+                "Lic. Juan Manuel Hernández de la Cruz"
+            ],
+            "Administrativo": [
+                "Mtro. Eric Uvence Martin Cicler Zavala"
+            ]
+        };
+
+        function selectType(type, element) {
+            // 1. Resaltar botón seleccionado
+            document.querySelectorAll('.type-option').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+
+            const alertaRequisitos = document.getElementById('requisitos-box');
+            const formSubsecuente = document.getElementById('subsecuente-box');
+            const calendario = document.getElementById('calendar-section');
+
+            // 2. Mostrar/Ocultar secciones según selección
+            if (type === 'primeraVez') {
+                alertaRequisitos.style.display = 'block';
+                formSubsecuente.style.display = 'none';
+                calendario.style.display = 'block'; // Muestra calendario directo
+            } else {
+                alertaRequisitos.style.display = 'none';
+                formSubsecuente.style.display = 'block';
+                calendario.style.display = 'block'; // Muestra calendario también
+            }
+        }
+
+        function cargarAbogados() {
+            const materia = document.getElementById('materia-select').value;
+            const abogadoSelect = document.getElementById('abogado-select');
+            
+            // Limpiar opciones anteriores
+            abogadoSelect.innerHTML = '<option value="">Selecciona un abogado...</option>';
+
+            if (materia && abogadosDB[materia]) {
+                abogadosDB[materia].forEach(nombre => {
+                    const option = document.createElement('option');
+                    option.value = nombre;
+                    option.text = nombre;
+                    abogadoSelect.appendChild(option);
+                });
+            } else {
+                abogadoSelect.innerHTML = '<option value="">No hay abogados disponibles</option>';
+            }
+        }
+    </script>
+
+</body>
+</html>

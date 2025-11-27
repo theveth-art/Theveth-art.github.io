@@ -25,7 +25,7 @@
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
         .requisitos-box h3 { color: #8B1D35; margin-bottom: 20px; font-size: 1.5rem; }
         .lista-requisitos { list-style: none; padding: 0; }
@@ -33,6 +33,29 @@
             margin-bottom: 15px; font-size: 1.1rem; display: flex; align-items: center; 
         }
         .lista-requisitos li i { color: #BC955C; font-size: 1.3rem; margin-right: 15px; }
+
+        /* BOTÓN DE AGENDAR CITA (NUEVO) */
+        .agenda-cta {
+            text-align: center; margin-bottom: 50px;
+        }
+        .btn-agenda-float {
+            display: inline-block;
+            background-color: #28a745; /* Verde para indicar acción positiva */
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .btn-agenda-float:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+            background-color: #218838;
+        }
+        .btn-agenda-float i { margin-right: 10px; }
 
         /* SECCIÓN PERSONAL (TRABAJO SOCIAL) */
         .staff-section { margin-bottom: 60px; }
@@ -114,9 +137,9 @@
         }
         .phone-big { font-size: 1.5rem; color: #8B1D35; font-weight: 800; text-decoration: none; }
 
-        /* ESTILOS DE IMPRESIÓN (MAGIA PARA OCULTAR COSAS) */
+        /* ESTILOS DE IMPRESIÓN */
         @media print {
-            .navbar, .footer-content, .contact-banner, .requisitos-box, .staff-section, .page-title, .btn-submit, .action-buttons {
+            .navbar, .footer-content, .contact-banner, .requisitos-box, .staff-section, .page-title, .btn-submit, .action-buttons, .agenda-cta {
                 display: none !important;
             }
             body { background-color: #fff; font-size: 12px; }
@@ -152,6 +175,12 @@
                 <li><i class="fas fa-map-marker-alt"></i> Comprobante de Domicilio</li>
                 <li><i class="fas fa-briefcase"></i> En caso de estar laborando: Último talón de pago</li>
             </ul>
+        </div>
+
+        <div class="agenda-cta">
+            <a href="citas.html" class="btn-agenda-float">
+                <i class="fas fa-calendar-check"></i> Agendar Cita en Línea
+            </a>
         </div>
 
         <div class="staff-section">
